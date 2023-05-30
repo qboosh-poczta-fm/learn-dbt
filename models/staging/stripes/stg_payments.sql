@@ -4,8 +4,8 @@ with payments as (
         id as payment_id,
         orderid,
         paymentmethod,
-        status,
-        amount / 100 as amount,
+        status, 
+        {{ cents_to_dollars('amount') }},
         created
 
     from {{ source('stripe', 'payment') }}
